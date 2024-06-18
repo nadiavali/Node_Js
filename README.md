@@ -12,3 +12,6 @@ By relying on an event-driven, non-blocking model, Node.js handles multiple conn
 
 - // File Reading with fs.readFile
 fs.readFile(path, options)
+- fs.writeFile is used to completely replace the content of a file or create a new file.
+
+- fs.appendFile is used to add new data to the end of an existing file without overwriting what's already there.

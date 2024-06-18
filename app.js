@@ -57,7 +57,7 @@ This code effectively reads the contents of a text file asynchronously and logs 
 handling any potential errors that might occur during the read operation.
 */
 
-const fs = require('fs').promises;
+const fs = require('fs').promises; // this can not be sth else
 
 fs.readFile('blog--post.txt', 'utf-8')
   .then(content => {
@@ -65,4 +65,54 @@ fs.readFile('blog--post.txt', 'utf-8')
   })
   .catch(err => {
     console.error(err);
+  });
+
+
+
+//  File Writing with fs.writeFile
+  //fs.writeFile(file, data, options)
+
+  // Imagine we need to save a new user to the user-db.json file.
+  // Here fs.writeFile method ensures our words find their place.
+
+  const newUser = {
+    id: 1,
+    username: "Nero",
+    email: "arman@example.com",
+  };
+
+  //{"id":1,"username":"Nero","email":"arman@example.com"}
+  
+  const fileName = "user-db.json";
+  // here then()  takes no argument is needed here since 
+  // writeFile resolves with undefined on success
+  fs.writeFile(fileName, JSON.stringify(newUser), "utf-8")
+    .then(() => {
+      console.log("User information saved successfully.", newUser);
+    })
+    .catch((err) => {
+      console.error("Error writing file:", err);
+    });
+
+
+// Extending with fs.appendFile
+fs.appendFile(file, data, options)
+
+
+/* 
+ chat application recording conversations. As new messages flow,
+  the fs.appendFile method adds new messages to the chat log while 
+  preserving the prior interactions.
+*/
+
+const fs = require("fs").promises;
+
+const newMessage = "User2: Hello, how are you?";
+
+fs.appendFile("chat.txt", newMessage + "\n")
+  .then(() => {
+    console.log("Message added to chat log.");
+  })
+  .catch((err) => {
+    console.error("Error appending message:", err);
   });
